@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-outfit: var(--font-outfit), sans-serif;
+  --font-inter: var(--font-inter), sans-serif;
+  --font-crimson: var(--font-crimson-pro), serif;
+
+  /* Colors */
+  --color-void: #020617;
+  /* Slate 950 */
+  --color-glass-base: #1E293B;
+  /* Slate 800 */
+
+  --color-ai-violet: #8B5CF6;
+  /* Violet 500 */
+  --color-electric-blue: #3B82F6;
+  /* Blue 500 */
+  --color-growth-green: #10B981;
+  /* Emerald 500 */
+  --color-focus-amber: #F59E0B;
+  /* Amber 500 */
+  --color-alert-rose: #F43F5E;
+  /* Rose 500 */
+  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.1);
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .glass-panel {
+    @apply bg-slate-800/50 backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-card {
+    @apply bg-slate-800/50 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glow;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  }
+}
+
+:root {
+  --background: var(--color-void);
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter);
+}
