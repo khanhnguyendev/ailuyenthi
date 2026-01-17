@@ -58,7 +58,7 @@ export function MicrophoneRecorder({ onRecordingComplete, maxSeconds = 120, auto
                     [...Array(10)].map((_, i) => (
                         <div
                             key={i}
-                            className="w-2 bg-ai-violet rounded-full animate-pulse"
+                            className="w-2 bg-primary rounded-full animate-pulse"
                             style={{
                                 height: `${Math.random() * 100}%`,
                                 animationDelay: `${i * 0.1}s`
@@ -66,7 +66,7 @@ export function MicrophoneRecorder({ onRecordingComplete, maxSeconds = 120, auto
                         />
                     ))
                 ) : (
-                    <div className="h-1 w-full bg-slate-800 rounded-full" />
+                    <div className="h-1 w-full bg-muted-foreground/30 rounded-full" />
                 )}
             </div>
 
@@ -74,7 +74,7 @@ export function MicrophoneRecorder({ onRecordingComplete, maxSeconds = 120, auto
             <div className="relative">
                 {/* Ripple Effect */}
                 {status === "recording" && (
-                    <div className="absolute inset-0 bg-alert-rose/20 rounded-full animate-ping" />
+                    <div className="absolute inset-0 bg-destructive/20 rounded-full animate-ping" />
                 )}
 
                 <button
@@ -83,12 +83,12 @@ export function MicrophoneRecorder({ onRecordingComplete, maxSeconds = 120, auto
                     className={`
                 w-24 h-24 rounded-full flex items-center justify-center shadow-2xl transition-all relative z-10
                 ${status === "recording"
-                            ? 'bg-alert-rose text-white hover:bg-rose-600 scale-110'
+                            ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90 scale-110'
                             : status === "completed"
-                                ? 'bg-growth-green text-white cursor-default'
-                                : 'bg-gradient-to-br from-ai-violet to-electric-blue text-white hover:scale-105'
+                                ? 'bg-green-500 text-white cursor-default'
+                                : 'bg-primary text-primary-foreground hover:scale-105'
                         }
-                disabled:opacity-50 disabled:cursor-not-allowed
+                disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
             `}
                 >
                     {status === "recording" && <Square className="w-8 h-8 fill-current" />}
@@ -100,10 +100,10 @@ export function MicrophoneRecorder({ onRecordingComplete, maxSeconds = 120, auto
 
             {/* Timer / Status Text */}
             <div className="text-center space-y-1">
-                <div className={`font-mono text-2xl font-bold ${status === "recording" ? 'text-alert-rose' : 'text-slate-400'}`}>
+                <div className={`font-mono text-2xl font-bold ${status === "recording" ? 'text-destructive' : 'text-muted-foreground'}`}>
                     {formatTime(seconds)} / {formatTime(maxSeconds)}
                 </div>
-                <p className="text-slate-500 text-sm font-medium uppercase tracking-wider">
+                <p className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
                     {status === "idle" && "Tap to Speak"}
                     {status === "recording" && "Recording..."}
                     {status === "analyzing" && "Uploading..."}

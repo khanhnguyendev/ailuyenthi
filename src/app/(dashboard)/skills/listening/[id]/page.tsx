@@ -48,25 +48,25 @@ export default function ListeningTestPage() {
     };
 
     return (
-        <div className="flex flex-col h-[calc(100vh-theme(spacing.8))] max-h-[900px]">
+        <div className="flex flex-col h-[calc(100vh-theme(spacing.8))] max-h-[900px] pb-6 px-6 pt-6">
 
             {/* Header */}
             <header className="shrink-0 mb-6">
-                <div className="flex justify-between items-center glass-panel p-3 rounded-xl mb-4">
+                <div className="flex justify-between items-center glass p-3 rounded-xl mb-4">
                     <div className="flex items-center gap-4">
-                        <Link href="/" className="p-2 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white">
+                        <Link href="/" className="p-2 hover:bg-secondary/50 rounded-lg text-muted-foreground hover:text-foreground">
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
                         <div>
-                            <h1 className="font-outfit font-bold text-white text-lg">IELTS Listening</h1>
-                            <span className="text-xs text-slate-500 font-mono">Test 4 • Section {activeSection}</span>
+                            <h1 className="font-outfit font-bold text-foreground text-lg">IELTS Listening</h1>
+                            <span className="text-xs text-muted-foreground font-mono">Test 4 • Section {activeSection}</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
                         <ExamTimer mode={mode === "exam" ? "exam" : "practice"} initialSeconds={mode === "exam" ? 1800 : 0} />
                         <button
                             onClick={() => setMode(mode === "practice" ? "exam" : "practice")}
-                            className="text-xs font-bold px-3 py-1 bg-white/5 rounded border border-white/5 text-slate-400"
+                            className="text-xs font-bold px-3 py-1 bg-secondary/50 rounded border border-border text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
                         >
                             Mode: {mode.toUpperCase()}
                         </button>
@@ -90,15 +90,15 @@ export default function ListeningTestPage() {
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-0">
 
                 {/* Left: Questions (Scrollable) */}
-                <div className="lg:col-span-2 glass-card rounded-xl overflow-hidden flex flex-col">
-                    <div className="bg-slate-900/80 p-4 border-b border-white/10 flex justify-between items-center">
-                        <h2 className="font-bold text-white text-lg">Section {activeSection} Questions</h2>
-                        <span className="text-xs font-bold bg-white/10 px-2 py-1 rounded text-slate-400">Questions 1-10</span>
+                <div className="lg:col-span-2 glass rounded-xl overflow-hidden flex flex-col">
+                    <div className="bg-muted/30 p-4 border-b border-border flex justify-between items-center">
+                        <h2 className="font-bold text-foreground text-lg">Section {activeSection} Questions</h2>
+                        <span className="text-xs font-bold bg-background/50 px-2 py-1 rounded text-muted-foreground">Questions 1-10</span>
                     </div>
 
                     <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
-                        <div className="mb-6 p-4 bg-ai-violet/10 border border-ai-violet/20 rounded-lg flex gap-3 text-sm text-slate-300">
-                            <Info className="w-5 h-5 text-ai-violet shrink-0" />
+                        <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg flex gap-3 text-sm text-foreground/80">
+                            <Info className="w-5 h-5 text-primary shrink-0" />
                             <p>Complete the notes below. Write <strong>ONE WORD AND/OR A NUMBER</strong> for each answer.</p>
                         </div>
 
@@ -114,8 +114,8 @@ export default function ListeningTestPage() {
                 <div className="space-y-4 overflow-y-auto">
 
                     {/* Section Navigator */}
-                    <div className="glass-panel p-4 rounded-xl">
-                        <h3 className="text-xs font-bold text-slate-500 uppercase mb-4 tracking-wider">Test Sections</h3>
+                    <div className="glass p-4 rounded-xl">
+                        <h3 className="text-xs font-bold text-muted-foreground uppercase mb-4 tracking-wider">Test Sections</h3>
                         <div className="grid grid-cols-4 gap-2">
                             {SECTIONS.map(num => (
                                 <button
@@ -124,8 +124,8 @@ export default function ListeningTestPage() {
                                     className={`
                                         h-10 rounded-lg font-bold text-sm transition-all
                                         ${activeSection === num
-                                            ? 'bg-gradient-to-br from-ai-violet to-electric-blue text-white shadow-lg'
-                                            : 'bg-white/5 hover:bg-white/10 text-slate-400'
+                                            ? 'bg-gradient-to-br from-primary to-blue-600 text-white shadow-lg'
+                                            : 'bg-secondary/50 hover:bg-secondary text-muted-foreground'
                                         }
                                     `}
                                 >
@@ -137,12 +137,12 @@ export default function ListeningTestPage() {
 
                     {/* Review Mode: Transcript */}
                     {status === "review" && (
-                        <div className="glass-card p-6 border-growth-green/30 animate-in fade-in slide-in-from-right-4">
-                            <div className="flex items-center gap-2 mb-4 text-growth-green">
+                        <div className="glass p-6 border-green-500/30 animate-in fade-in slide-in-from-right-4">
+                            <div className="flex items-center gap-2 mb-4 text-green-500">
                                 <CheckCircle2 className="w-5 h-5" />
                                 <h3 className="font-bold">Transcript Revealed</h3>
                             </div>
-                            <div className="prose prose-invert prose-sm max-w-none text-slate-400 font-mono text-xs leading-relaxed">
+                            <div className="prose prose-sm max-w-none text-muted-foreground font-mono text-xs leading-relaxed">
                                 <p>[00:00] <strong>Clerk:</strong> Good morning, customer service.</p>
                                 <p>[00:05] <strong>Customer:</strong> Hi, I'd like to return a product.</p>
                                 <p>[00:10] <strong>Clerk:</strong> Certainly. Can I have your name?</p>
@@ -154,7 +154,7 @@ export default function ListeningTestPage() {
                     {/* Submit Action */}
                     <button
                         onClick={handleSubmit}
-                        className="w-full py-4 bg-slate-800 hover:bg-slate-700 border border-white/10 rounded-xl font-bold text-slate-200 transition-colors flex items-center justify-center gap-2"
+                        className="w-full py-4 bg-primary hover:bg-primary/90 border border-border/10 rounded-xl font-bold text-primary-foreground transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-[0.99]"
                         disabled={status === "review"}
                     >
                         {status === "review" ? "Test Completed" : "Submit Test"}

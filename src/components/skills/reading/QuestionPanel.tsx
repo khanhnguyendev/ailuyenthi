@@ -30,16 +30,16 @@ export function QuestionPanel({ questions, onAnswer, onMark, reviewMode }: Quest
                     {/* Header */}
                     <div className="flex justify-between items-start mb-3">
                         <div className="flex items-center gap-3">
-                            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-800 text-white font-bold border border-white/10 shadow-lg">
+                            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-foreground font-bold border border-border shadow-lg">
                                 {q.number}
                             </span>
-                            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider bg-white/5 px-2 py-1 rounded">
+                            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider bg-muted px-2 py-1 rounded">
                                 {q.type.replace("_", " ")}
                             </span>
                         </div>
                         <button
                             onClick={() => onMark(q.id)}
-                            className={`p-1.5 rounded-lg transition-colors ${q.isMarked ? 'bg-focus-amber text-white' : 'text-slate-600 hover:text-slate-400'}`}
+                            className={`p-1.5 rounded-lg transition-colors ${q.isMarked ? 'bg-orange-500 text-white' : 'text-muted-foreground hover:text-foreground'}`}
                             title="Mark for Review"
                         >
                             <HelpCircle className="w-4 h-4" />
@@ -47,10 +47,10 @@ export function QuestionPanel({ questions, onAnswer, onMark, reviewMode }: Quest
                     </div>
 
                     {/* Prompt */}
-                    <p className="text-slate-300 font-medium mb-4 leading-relaxed">{q.prompt}</p>
+                    <p className="text-foreground font-medium mb-4 leading-relaxed">{q.prompt}</p>
 
                     {/* Answer Controls */}
-                    <div className="pl-4 border-l-2 border-white/10">
+                    <div className="pl-4 border-l-2 border-border/50">
                         {/* Multiple Choice / TFNG */}
                         {(q.type === "multiple_choice" || q.type === "true_false") && (
                             <div className="space-y-2">
@@ -58,8 +58,8 @@ export function QuestionPanel({ questions, onAnswer, onMark, reviewMode }: Quest
                                     <label
                                         key={opt}
                                         className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all group ${q.userAnswer === opt
-                                                ? 'bg-ai-violet/20 border-ai-violet text-white'
-                                                : 'bg-white/5 border-transparent hover:bg-white/10 text-slate-400 hover:text-slate-200'
+                                            ? 'bg-primary/10 border-primary text-primary'
+                                            : 'bg-secondary/20 border-transparent hover:bg-secondary/50 text-muted-foreground hover:text-foreground'
                                             }`}
                                     >
                                         <input
@@ -72,11 +72,11 @@ export function QuestionPanel({ questions, onAnswer, onMark, reviewMode }: Quest
                                             className="hidden"
                                         />
                                         {q.userAnswer === opt ? (
-                                            <CheckCircle className="w-5 h-5 text-ai-violet shrink-0" />
+                                            <CheckCircle className="w-5 h-5 text-primary shrink-0" />
                                         ) : (
-                                            <Circle className="w-5 h-5 text-slate-600 group-hover:text-slate-400 shrink-0" />
+                                            <Circle className="w-5 h-5 text-muted-foreground group-hover:text-foreground shrink-0" />
                                         )}
-                                        <span>{opt}</span>
+                                        <span className={q.userAnswer === opt ? "font-medium text-foreground" : ""}>{opt}</span>
                                     </label>
                                 ))}
                             </div>
@@ -90,7 +90,7 @@ export function QuestionPanel({ questions, onAnswer, onMark, reviewMode }: Quest
                                 onChange={(e) => onAnswer(q.id, e.target.value)}
                                 disabled={reviewMode}
                                 placeholder="Type answer..."
-                                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white placeholder:text-slate-600 focus:outline-none focus:border-ai-violet transition-colors"
+                                className="w-full bg-secondary/50 border border-input rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring transition-colors"
                             />
                         )}
                     </div>

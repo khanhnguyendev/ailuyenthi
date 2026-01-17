@@ -41,14 +41,14 @@ export function ExamTimer({ initialSeconds = 0, mode, onTimeUp }: ExamTimerProps
     };
 
     const getTimerColor = () => {
-        if (mode === "practice") return "text-slate-300";
-        if (seconds < 300) return "text-alert-rose animate-pulse"; // Under 5 mins
-        if (seconds < 600) return "text-focus-amber"; // Under 10 mins
-        return "text-slate-300";
+        if (mode === "practice") return "text-muted-foreground";
+        if (seconds < 300) return "text-destructive animate-pulse"; // Under 5 mins
+        if (seconds < 600) return "text-orange-500"; // Under 10 mins
+        return "text-muted-foreground";
     };
 
     return (
-        <div className={`flex items-center gap-2 font-mono text-lg font-bold ${getTimerColor()} bg-white/5 px-3 py-1.5 rounded-lg border border-white/5`}>
+        <div className={`flex items-center gap-2 font-mono text-lg font-bold ${getTimerColor()} bg-secondary/50 px-3 py-1.5 rounded-lg border border-border`}>
             <Clock className="w-4 h-4" />
             <span>{formatTime(seconds)}</span>
         </div>

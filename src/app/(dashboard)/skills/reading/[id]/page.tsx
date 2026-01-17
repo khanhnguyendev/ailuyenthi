@@ -62,29 +62,29 @@ export default function ReadingTestPage() {
     const answeredCount = questions.filter(q => q.userAnswer).length;
 
     return (
-        <div className="flex flex-col h-[calc(100vh-theme(spacing.8))] max-h-[900px] overflow-hidden">
+        <div className="flex flex-col h-[calc(100vh-theme(spacing.8))] max-h-[900px] overflow-hidden pb-6 px-6 pt-6">
 
             {/* Header */}
-            <header className="flex justify-between items-center glass-panel p-3 rounded-xl mb-4 shrink-0">
+            <header className="flex justify-between items-center glass p-3 rounded-xl mb-4 shrink-0">
                 <div className="flex items-center gap-4">
-                    <Link href="/" className="p-2 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white">
+                    <Link href="/" className="p-2 hover:bg-secondary/50 rounded-lg text-muted-foreground hover:text-foreground">
                         <ArrowLeft className="w-5 h-5" />
                     </Link>
                     <div>
-                        <h1 className="font-outfit font-bold text-white text-lg leading-none">Reading Passage 1</h1>
-                        <span className="text-xs text-slate-500 font-mono">Evolution of Cognitive Science</span>
+                        <h1 className="font-outfit font-bold text-foreground text-lg leading-none">Reading Passage 1</h1>
+                        <span className="text-xs text-muted-foreground font-mono">Evolution of Cognitive Science</span>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <div className="hidden md:flex bg-slate-900/50 p-1 rounded-lg border border-white/5 text-xs font-bold">
+                    <div className="hidden md:flex bg-secondary/50 p-1 rounded-lg border border-border text-xs font-bold">
                         <button
                             onClick={() => setMode("practice")}
-                            className={`px-3 py-1 rounded transition-colors ${mode === "practice" ? 'bg-ai-violet text-white' : 'text-slate-500'}`}
+                            className={`px-3 py-1 rounded transition-colors ${mode === "practice" ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'}`}
                         >Practice</button>
                         <button
                             onClick={() => setMode("exam")}
-                            className={`px-3 py-1 rounded transition-colors ${mode === "exam" ? 'bg-alert-rose text-white' : 'text-slate-500'}`}
+                            className={`px-3 py-1 rounded transition-colors ${mode === "exam" ? 'bg-destructive text-destructive-foreground' : 'text-muted-foreground'}`}
                         >Exam</button>
                     </div>
 
@@ -93,7 +93,7 @@ export default function ReadingTestPage() {
                     <button
                         onClick={handleSubmit}
                         disabled={status === "review"}
-                        className="bg-electric-blue hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                     >
                         {status === "test" ? (
                             <>Submit <Send className="w-3 h-3" /></>
@@ -108,20 +108,24 @@ export default function ReadingTestPage() {
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-4 min-h-0 relative">
 
                 {/* Left: Passage */}
-                <div className="bg-white rounded-xl overflow-hidden shadow-2xl relative">
+                <div className="bg-white rounded-xl overflow-hidden shadow-2xl relative border-4 border-slate-200 dark:border-slate-800">
+                    {/* Paper texture overlay could go here if keeping paper look, implying text-slate-900 always inside */}
+                    <Link href="/" className="absolute top-2 right-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-800 transition-colors z-10">
+                        {/* Expand Icon Placeholder */}
+                    </Link>
                     <ReadingPassage title="The Evolution of Cognitive Science" content={MOCK_PASSAGE} />
                 </div>
 
                 {/* Right: Questions */}
-                <div className="glass-card rounded-xl overflow-hidden flex flex-col relative z-0">
-                    <div className="bg-slate-900/80 p-3 border-b border-white/10 flex justify-between items-center shrink-0">
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Questions 1-{questions.length}</span>
-                        <div className="text-xs font-mono">
-                            <span className="text-electric-blue font-bold">{answeredCount}</span>/{questions.length} Answered
+                <div className="glass rounded-xl overflow-hidden flex flex-col relative z-0">
+                    <div className="bg-muted/30 p-3 border-b border-border flex justify-between items-center shrink-0">
+                        <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Questions 1-{questions.length}</span>
+                        <div className="text-xs font-mono text-foreground">
+                            <span className="text-blue-500 font-bold">{answeredCount}</span>/{questions.length} Answered
                         </div>
                     </div>
 
-                    <div className="flex-1 min-h-0 relative">
+                    <div className="flex-1 min-h-0 relative custom-scrollbar overflow-y-auto">
                         <QuestionPanel
                             questions={questions}
                             onAnswer={handleAnswer}

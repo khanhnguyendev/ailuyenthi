@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { Outfit, Inter, Crimson_Pro } from "next/font/google"; // Start of Selection
 import "./globals.css";
 
@@ -28,11 +29,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${inter.variable} ${crimsonPro.variable} antialiased bg-void text-white`}
+        className={`${outfit.variable} ${inter.variable} ${crimsonPro.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

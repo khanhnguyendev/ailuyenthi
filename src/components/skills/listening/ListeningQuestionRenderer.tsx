@@ -31,7 +31,7 @@ export function ListeningQuestionRenderer({ questions, onAnswer, isReview }: Lis
             {questions.map((q) => (
                 <div key={q.id} className="relative pl-8">
                     {/* Question Number */}
-                    <span className="absolute left-0 top-0 w-6 h-6 rounded-md bg-slate-800 text-slate-400 text-xs font-bold flex items-center justify-center border border-white/10">
+                    <span className="absolute left-0 top-0 w-6 h-6 rounded-md bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center border border-border">
                         {q.number}
                     </span>
 
@@ -40,7 +40,7 @@ export function ListeningQuestionRenderer({ questions, onAnswer, isReview }: Lis
 
                         {/* Form / Note Completion */}
                         {q.type === "form_completion" && (
-                            <div className="text-lg leading-loose text-slate-200 font-serif">
+                            <div className="text-lg leading-loose text-foreground font-serif">
                                 {q.prompt.split("______").map((part, i, arr) => (
                                     <span key={i}>
                                         {part}
@@ -50,7 +50,7 @@ export function ListeningQuestionRenderer({ questions, onAnswer, isReview }: Lis
                                                 value={q.userAnswer || ""}
                                                 onChange={(e) => onAnswer(q.id, e.target.value)}
                                                 disabled={isReview}
-                                                className="inline-block w-40 mx-2 bg-transparent border-b-2 border-slate-600 focus:border-ai-violet text-center text-ai-violet font-sans font-bold focus:outline-none transition-colors px-2 py-0.5"
+                                                className="inline-block w-40 mx-2 bg-transparent border-b-2 border-input focus:border-primary text-center text-primary font-sans font-bold focus:outline-none transition-colors px-2 py-0.5 placeholder:text-muted-foreground/50"
                                                 placeholder="(answer)"
                                             />
                                         )}
@@ -62,13 +62,13 @@ export function ListeningQuestionRenderer({ questions, onAnswer, isReview }: Lis
                         {/* Multiple Choice */}
                         {q.type === "multiple_choice" && (
                             <div className="space-y-3">
-                                <p className="font-medium text-slate-300 mb-2">{q.prompt}</p>
+                                <p className="font-medium text-foreground mb-2">{q.prompt}</p>
                                 {q.options?.map((opt) => (
                                     <label
                                         key={opt}
                                         className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all ${q.userAnswer === opt
-                                                ? 'bg-ai-violet/20 border-ai-violet text-white'
-                                                : 'bg-white/5 border-transparent hover:bg-white/10 text-slate-400 hover:text-slate-200'
+                                            ? 'bg-primary/10 border-primary text-primary-foreground dark:text-primary'
+                                            : 'bg-secondary/20 border-transparent hover:bg-secondary/50 text-muted-foreground hover:text-foreground'
                                             }`}
                                     >
                                         <input
@@ -80,8 +80,8 @@ export function ListeningQuestionRenderer({ questions, onAnswer, isReview }: Lis
                                             disabled={isReview}
                                             className="hidden"
                                         />
-                                        {q.userAnswer === opt ? <CheckCircle className="w-5 h-5 text-ai-violet" /> : <Circle className="w-5 h-5 text-slate-600" />}
-                                        <span>{opt}</span>
+                                        {q.userAnswer === opt ? <CheckCircle className="w-5 h-5 text-primary" /> : <Circle className="w-5 h-5 text-muted-foreground" />}
+                                        <span className={q.userAnswer === opt ? "font-medium text-foreground" : ""}>{opt}</span>
                                     </label>
                                 ))}
                             </div>

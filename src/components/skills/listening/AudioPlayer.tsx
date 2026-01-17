@@ -52,7 +52,7 @@ export function AudioPlayer({ src, mode, sectionNum, onEnded }: AudioPlayerProps
     };
 
     return (
-        <div className="bg-slate-900 border border-white/10 p-4 rounded-xl shadow-lg flex flex-col gap-4">
+        <div className="bg-card border border-border p-4 rounded-xl shadow-lg flex flex-col gap-4">
             <audio
                 ref={audioRef}
                 src={src}
@@ -65,7 +65,7 @@ export function AudioPlayer({ src, mode, sectionNum, onEnded }: AudioPlayerProps
             />
 
             {/* Top Row: Section & Title */}
-            <div className="flex justify-between items-center text-xs font-bold uppercase tracking-wider text-slate-500">
+            <div className="flex justify-between items-center text-xs font-bold uppercase tracking-wider text-muted-foreground">
                 <span>Section {sectionNum}/4</span>
                 <div className="flex items-center gap-1">
                     <Volume2 className="w-3 h-3" />
@@ -80,8 +80,8 @@ export function AudioPlayer({ src, mode, sectionNum, onEnded }: AudioPlayerProps
                 <button
                     onClick={togglePlay}
                     className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${isPlaying
-                            ? 'bg-white/5 text-white border border-white/10 hover:bg-white/10'
-                            : 'bg-ai-violet text-white shadow-lg shadow-ai-violet/20 hover:scale-105 active:scale-95'
+                        ? 'bg-secondary text-foreground border border-border hover:bg-secondary/80'
+                        : 'bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:scale-105 active:scale-95'
                         }`}
                 >
                     {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
@@ -89,7 +89,7 @@ export function AudioPlayer({ src, mode, sectionNum, onEnded }: AudioPlayerProps
 
                 {/* Progress Display */}
                 <div className="flex-1 flex flex-col justify-center gap-1">
-                    <div className="flex justify-between text-xs font-mono text-slate-400">
+                    <div className="flex justify-between text-xs font-mono text-muted-foreground">
                         <span>{formatTime(progress)}</span>
                         <span>{formatTime(duration)}</span>
                     </div>
@@ -102,11 +102,11 @@ export function AudioPlayer({ src, mode, sectionNum, onEnded }: AudioPlayerProps
                         onChange={handleSeek}
                         disabled={mode === "exam"}
                         className={`w-full h-2 rounded-full appearance-none cursor-pointer
-                    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white
-                    ${mode === "exam" ? 'bg-slate-800 cursor-not-allowed [&::-webkit-slider-thumb]:hidden' : 'bg-slate-700 accent-ai-violet'}
+                    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary
+                    ${mode === "exam" ? 'bg-muted cursor-not-allowed [&::-webkit-slider-thumb]:hidden' : 'bg-secondary accent-primary'}
                 `}
                         style={{
-                            background: `linear-gradient(to right, ${mode === 'exam' ? '#3B82F6' : '#8B5CF6'} ${(progress / duration) * 100}%, #1E293B ${(progress / duration) * 100}%)`
+                            background: `linear-gradient(to right, ${mode === 'exam' ? '#3B82F6' : 'var(--primary)'} ${(progress / duration) * 100}%, var(--secondary) ${(progress / duration) * 100}%)`
                         }}
                     />
                 </div>

@@ -16,17 +16,17 @@ export function WritingEditor({ content, onChange, disabled }: WritingEditorProp
 
     // Guidelines: Task 2 ~250 words
     const getWordCountColor = () => {
-        if (wordCount < 150) return "text-alert-rose";
-        if (wordCount < 250) return "text-focus-amber";
-        return "text-growth-green";
+        if (wordCount < 150) return "text-destructive";
+        if (wordCount < 250) return "text-orange-500";
+        return "text-green-500";
     };
 
     return (
-        <div className="flex flex-col h-full bg-slate-900/50 rounded-2xl border border-white/10 shadow-inner overflow-hidden">
+        <div className="flex flex-col h-full bg-card border border-border shadow-sm rounded-2xl overflow-hidden">
             {/* Editor Toolbar (Minimal) */}
-            <div className="px-4 py-2 bg-white/5 border-b border-white/5 flex justify-between items-center">
+            <div className="px-4 py-2 bg-muted/50 border-b border-border flex justify-between items-center">
                 <div className="flex gap-2">
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
+                    <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                         <AlignLeft className="w-3 h-3" /> Editor
                     </span>
                 </div>
@@ -37,7 +37,7 @@ export function WritingEditor({ content, onChange, disabled }: WritingEditorProp
 
             {/* Text Area */}
             <textarea
-                className="flex-1 w-full bg-transparent p-6 text-slate-200 text-lg leading-relaxed focus:outline-none resize-none font-serif placeholder:text-slate-600"
+                className="flex-1 w-full bg-transparent p-6 text-foreground text-lg leading-relaxed focus:outline-none resize-none font-serif placeholder:text-muted-foreground/50"
                 placeholder="Start writing your essay here..."
                 value={content}
                 onChange={(e) => onChange(e.target.value)}

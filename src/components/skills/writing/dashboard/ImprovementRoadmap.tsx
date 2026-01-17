@@ -11,44 +11,44 @@ export function ImprovementRoadmap() {
     ];
 
     return (
-        <div className="glass-card p-6 rounded-2xl h-full">
+        <div className="glass p-6 rounded-2xl h-full">
             <div className="flex items-center gap-3 mb-6">
-                <div className="bg-electric-blue/10 p-2 rounded-lg">
-                    <Map className="w-5 h-5 text-electric-blue" />
+                <div className="bg-blue-500/10 p-2 rounded-lg">
+                    <Map className="w-5 h-5 text-blue-500" />
                 </div>
-                <h3 className="font-bold text-white text-lg">Road to Band 6.5</h3>
+                <h3 className="font-bold text-foreground text-lg">Road to Band 6.5</h3>
             </div>
 
             <div className="space-y-6 relative">
                 {/* Vertical Line */}
-                <div className="absolute left-3.5 top-2 bottom-2 w-0.5 bg-slate-800 rounded-full" />
+                <div className="absolute left-3.5 top-2 bottom-2 w-0.5 bg-border rounded-full" />
 
                 {steps.map((step, index) => (
                     <div key={step.id} className="relative pl-10 flex items-center justify-between group">
 
                         {/* Icon */}
                         <div className={`
-                        absolute left-0 w-8 h-8 rounded-full border-4 flex items-center justify-center bg-slate-900 transition-colors z-10
-                        ${step.status === 'completed' ? 'border-growth-green text-growth-green' : ''}
-                        ${step.status === 'current' ? 'border-electric-blue text-white ring-4 ring-electric-blue/20' : ''}
-                        ${step.status === 'locked' ? 'border-slate-700 text-slate-600' : ''}
+                        absolute left-0 w-8 h-8 rounded-full border-4 flex items-center justify-center bg-background transition-colors z-10
+                        ${step.status === 'completed' ? 'border-green-500 text-green-500' : ''}
+                        ${step.status === 'current' ? 'border-blue-500 text-primary-foreground bg-blue-500 ring-4 ring-blue-500/20' : ''}
+                        ${step.status === 'locked' ? 'border-muted text-muted-foreground' : ''}
                     `}>
                             {step.status === 'completed' && <CheckCircle2 className="w-4 h-4" />}
-                            {step.status === 'current' && <span className="w-2.5 h-2.5 bg-electric-blue rounded-full animate-pulse" />}
+                            {step.status === 'current' && <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />}
                             {step.status === 'locked' && <Lock className="w-3 h-3" />}
                         </div>
 
                         <div>
-                            <h4 className={`text-sm font-bold ${step.status === 'locked' ? 'text-slate-500' : 'text-white'}`}>
+                            <h4 className={`text-sm font-bold ${step.status === 'locked' ? 'text-muted-foreground' : 'text-foreground'}`}>
                                 {step.title}
                             </h4>
                             {step.status === 'current' && (
-                                <span className="text-xs text-electric-blue font-medium">In Progress • 60%</span>
+                                <span className="text-xs text-blue-500 font-medium">In Progress • 60%</span>
                             )}
                         </div>
 
                         {step.status === 'current' && (
-                            <button className="bg-electric-blue text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-electric-blue/90 transition-colors flex items-center gap-1">
+                            <button className="bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-1 cursor-pointer">
                                 Continue <ArrowRight className="w-3 h-3" />
                             </button>
                         )}

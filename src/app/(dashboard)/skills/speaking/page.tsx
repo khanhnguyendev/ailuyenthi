@@ -8,7 +8,7 @@ import { BrainCircuit, Ear, Sparkles, Mic2 } from "lucide-react";
 
 export default function SpeakingDashboardPage() {
     return (
-        <div className="max-w-6xl mx-auto pb-20 space-y-8">
+        <div className="max-w-6xl mx-auto pb-20 space-y-8 pt-10 px-6">
 
             {/* 1. Header & Identity */}
             <SpeakingHeader streak={4} />
@@ -20,25 +20,25 @@ export default function SpeakingDashboardPage() {
 
                     {/* Quick Start */}
                     <div>
-                        <h2 className="text-xl font-bold text-white mb-6">Start Speaking</h2>
+                        <h2 className="text-xl font-bold text-foreground mb-6">Start Speaking</h2>
                         <QuickStartMic />
                     </div>
 
                     {/* Skill Boosters (Horizontal Row) */}
                     <div>
-                        <h2 className="text-xl font-bold text-white mb-4">Skill Boosters</h2>
+                        <h2 className="text-xl font-bold text-foreground mb-4">Skill Boosters</h2>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {[
-                                { title: "Pronunciation IPA", icon: Ear, color: "text-electric-blue" },
-                                { title: "Fluency Drills", icon: Mic2, color: "text-focus-amber" },
-                                { title: "Shadowing", icon: BrainCircuit, color: "text-growth-green" },
-                                { title: "Confidence Mode", icon: Sparkles, color: "text-ai-violet" },
+                                { title: "Pronunciation IPA", icon: Ear, color: "text-blue-500" },
+                                { title: "Fluency Drills", icon: Mic2, color: "text-orange-500" },
+                                { title: "Shadowing", icon: BrainCircuit, color: "text-green-500" },
+                                { title: "Confidence Mode", icon: Sparkles, color: "text-primary" },
                             ].map((tool, i) => (
-                                <div key={i} className="glass-panel p-4 rounded-xl flex flex-col items-center text-center hover:bg-white/5 transition-colors cursor-pointer border border-white/5 group">
-                                    <div className={`p-3 rounded-full bg-slate-900 border border-white/5 mb-3 group-hover:scale-110 transition-transform ${tool.color}`}>
+                                <div key={i} className="glass p-4 rounded-xl flex flex-col items-center text-center hover:bg-accent/50 transition-colors cursor-pointer border border-border group">
+                                    <div className={`p-3 rounded-full bg-card border border-border mb-3 group-hover:scale-110 transition-transform ${tool.color}`}>
                                         <tool.icon className="w-5 h-5" />
                                     </div>
-                                    <span className="text-xs font-bold text-slate-300 group-hover:text-white">{tool.title}</span>
+                                    <span className="text-xs font-bold text-muted-foreground group-hover:text-foreground">{tool.title}</span>
                                 </div>
                             ))}
                         </div>

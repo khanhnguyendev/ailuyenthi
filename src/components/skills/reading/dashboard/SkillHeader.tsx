@@ -12,15 +12,15 @@ export function SkillHeader({ title, desc, streak }: SkillHeaderProps) {
     return (
         <div className="flex justify-between items-end mb-8">
             <div>
-                <h1 className="text-3xl font-bold text-white font-outfit mb-2">{title}</h1>
-                <p className="text-slate-400">{desc}</p>
+                <h1 className="text-3xl font-bold text-foreground font-outfit mb-2">{title}</h1>
+                <p className="text-muted-foreground">{desc}</p>
             </div>
 
-            <div className="flex items-center gap-2 bg-slate-900 border border-white/5 px-4 py-2 rounded-xl">
-                <Flame className={`w-5 h-5 ${streak > 0 ? 'text-focus-amber fill-focus-amber animate-pulse' : 'text-slate-600'}`} />
+            <div className="flex items-center gap-2 bg-card border border-border px-4 py-2 rounded-xl shadow-sm">
+                <Flame className={`w-5 h-5 ${streak > 0 ? 'text-orange-500 fill-orange-500 animate-pulse' : 'text-muted-foreground'}`} />
                 <div>
-                    <span className="block text-xs font-bold text-slate-500 uppercase">Streak</span>
-                    <span className="block text-lg font-bold text-white leading-none">{streak} Days</span>
+                    <span className="block text-xs font-bold text-muted-foreground uppercase">Streak</span>
+                    <span className="block text-lg font-bold text-foreground leading-none">{streak} Days</span>
                 </div>
             </div>
         </div>

@@ -17,23 +17,23 @@ export function BandProgress({ current, target, history }: BandProgressProps) {
     const visibleSteps = steps.filter((s, i) => i >= currentIdx - 1 && i <= targetIdx + 1);
 
     return (
-        <div className="glass-panel p-6 rounded-2xl relative overflow-hidden">
+        <div className="glass p-6 rounded-2xl relative overflow-hidden">
 
             {/* Header */}
             <div className="flex justify-between items-start mb-8 z-10 relative">
                 <div>
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Current Band</span>
+                    <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Current Band</span>
                     <div className="flex items-baseline gap-2">
-                        <h2 className="text-4xl font-bold text-white font-outfit">{current.toFixed(1)}</h2>
-                        <span className="text-sm text-growth-green font-bold flex items-center gap-1">
+                        <h2 className="text-4xl font-bold text-foreground font-outfit">{current.toFixed(1)}</h2>
+                        <span className="text-sm text-green-500 font-bold flex items-center gap-1">
                             <Trophy className="w-3 h-3" /> Top 40%
                         </span>
                     </div>
                 </div>
                 <div className="text-right">
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Target Goal</span>
-                    <div className="flex items-center justify-end gap-2 text-xl font-bold text-white">
-                        <Target className="w-5 h-5 text-focus-amber" />
+                    <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Target Goal</span>
+                    <div className="flex items-center justify-end gap-2 text-xl font-bold text-foreground">
+                        <Target className="w-5 h-5 text-orange-500" />
                         {target.toFixed(1)}
                     </div>
                 </div>
@@ -42,11 +42,11 @@ export function BandProgress({ current, target, history }: BandProgressProps) {
             {/* Progress Visualization */}
             <div className="relative pt-4 pb-2 z-10">
                 {/* Track */}
-                <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/10 -translate-y-1/2 rounded-full" />
+                <div className="absolute top-1/2 left-0 right-0 h-1 bg-secondary -translate-y-1/2 rounded-full" />
 
                 {/* Fill */}
                 <div
-                    className="absolute top-1/2 left-0 h-1 bg-growth-green -translate-y-1/2 rounded-full transition-all duration-1000"
+                    className="absolute top-1/2 left-0 h-1 bg-green-500 -translate-y-1/2 rounded-full transition-all duration-1000"
                     style={{ width: `${((currentIdx + 1) / steps.length) * 100}%` }} // Simplified width logic
                 />
 
@@ -61,11 +61,11 @@ export function BandProgress({ current, target, history }: BandProgressProps) {
                                 <div
                                     className={`
                                 w-4 h-4 rounded-full border-2 transition-all z-10
-                                ${isAchieved ? 'bg-growth-green border-growth-green' : 'bg-slate-900 border-slate-700'}
-                                ${isTarget ? 'ring-4 ring-focus-amber/20 border-focus-amber' : ''}
+                                ${isAchieved ? 'bg-green-500 border-green-500' : 'bg-background border-border'}
+                                ${isTarget ? 'ring-4 ring-orange-500/20 border-orange-500' : ''}
                             `}
                                 />
-                                <span className={`text-xs font-bold ${isAchieved ? 'text-white' : 'text-slate-600'}`}>
+                                <span className={`text-xs font-bold ${isAchieved ? 'text-foreground' : 'text-muted-foreground'}`}>
                                     {step}
                                 </span>
                             </div>
@@ -75,7 +75,7 @@ export function BandProgress({ current, target, history }: BandProgressProps) {
             </div>
 
             {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-growth-green/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
         </div>
     );

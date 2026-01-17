@@ -1,52 +1,182 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================
+   DESIGN TOKENS
+   ========================= */
 @theme {
   /* Fonts */
   --font-outfit: var(--font-outfit), sans-serif;
   --font-inter: var(--font-inter), sans-serif;
   --font-crimson: var(--font-crimson-pro), serif;
 
-  /* Colors */
-  --color-void: #020617;
-  /* Slate 950 */
-  --color-glass-base: #1E293B;
-  /* Slate 800 */
+  /* Semantic Tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-  --color-ai-violet: #8B5CF6;
-  /* Violet 500 */
-  --color-electric-blue: #3B82F6;
-  /* Blue 500 */
-  --color-growth-green: #10B981;
-  /* Emerald 500 */
-  --color-focus-amber: #F59E0B;
-  /* Amber 500 */
-  --color-alert-rose: #F43F5E;
-  /* Rose 500 */
-  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.1);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Motion */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0
+    }
+
+    to {
+      height: var(--radix-accordion-content-height)
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height)
+    }
+
+    to {
+      height: 0
+    }
+  }
 }
 
-/* Custom Utilities */
-@layer utilities {
-  .glass-panel {
-    @apply bg-slate-800/50 backdrop-blur-xl border border-white/10;
-  }
-
-  .glass-card {
-    @apply bg-slate-800/50 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glow;
-  }
-
-  .text-glow {
-    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-  }
-}
-
+/* =========================
+   LIGHT MODE (EDUCATION)
+   ========================= */
 :root {
-  --background: var(--color-void);
-  --foreground: #ffffff;
+  /* Backgrounds */
+  --background: oklch(0.97 0.01 95);
+  /* soft paper */
+  --foreground: oklch(0.18 0.02 265);
+  /* academic dark text */
+
+  --card: oklch(0.99 0.005 95);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(0.99 0.005 95);
+  --popover-foreground: var(--foreground);
+
+  /* Brand / Accent */
+  --primary: oklch(0.52 0.18 285);
+  /* controlled purple */
+  --primary-foreground: oklch(0.98 0.005 95);
+
+  --secondary: oklch(0.93 0.02 95);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.94 0.015 95);
+  --muted-foreground: oklch(0.45 0.03 265);
+
+  --accent: oklch(0.92 0.03 285);
+  --accent-foreground: var(--foreground);
+
+  /* Feedback */
+  --destructive: oklch(0.58 0.18 25);
+  --destructive-foreground: oklch(0.98 0.005 95);
+
+  /* UI */
+  --border: oklch(0.88 0.01 95);
+  --input: oklch(0.88 0.01 95);
+  --ring: oklch(0.52 0.18 285);
+
+  --radius: 0.75rem;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter);
+/* =========================
+   DARK MODE (NEBULA)
+   ========================= */
+.dark {
+  --background: oklch(0.12 0.02 270);
+  --foreground: oklch(0.96 0.01 260);
+
+  --card: oklch(0.16 0.03 270);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(0.16 0.03 270);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(0.65 0.22 285);
+  --primary-foreground: oklch(0.98 0.005 260);
+
+  --secondary: oklch(0.22 0.04 270);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.2 0.03 270);
+  --muted-foreground: oklch(0.7 0.02 260);
+
+  --accent: oklch(0.25 0.05 280);
+  --accent-foreground: var(--foreground);
+
+  --destructive: oklch(0.5 0.2 25);
+  --destructive-foreground: oklch(0.98 0.005 260);
+
+  --border: oklch(0.25 0.03 270);
+  --input: oklch(0.25 0.03 270);
+  --ring: oklch(0.65 0.22 285);
+}
+
+/* =========================
+   BASE LAYER
+   ========================= */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-inter);
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 20%, transparent);
+  }
+}
+
+/* =========================
+   UTILITIES
+   ========================= */
+@layer utilities {
+  .glass {
+    @apply bg-card/80 backdrop-blur-xl border border-border shadow-sm;
+  }
+
+  .glass-hover {
+    @apply hover:bg-accent/40 hover:border-accent transition-colors duration-200;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
 }
