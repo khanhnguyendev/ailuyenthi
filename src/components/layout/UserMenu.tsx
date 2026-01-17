@@ -1,7 +1,6 @@
 "use client";
 
 import { LogOut, User, Settings, CreditCard, Gift } from "lucide-react";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -45,18 +44,12 @@ export function UserMenu() {
                                     <User className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                                     Profile
                                 </Link>
-                                <Link href="/subscription" className="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-secondary/50 text-sm font-medium text-foreground transition-colors group">
-                                    <CreditCard className="w-4 h-4 text-muted-foreground group-hover:text-purple-500" />
-                                    Subscription
-                                </Link>
+
                                 <Link href="/referrals" className="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-secondary/50 text-sm font-medium text-foreground transition-colors group">
                                     <Gift className="w-4 h-4 text-muted-foreground group-hover:text-green-500" />
                                     Referrals
                                 </Link>
-                                <div className="px-4 py-2 flex items-center justify-between">
-                                    <span className="text-sm font-medium text-muted-foreground">Theme</span>
-                                    <ThemeToggle />
-                                </div>
+
                             </div>
 
                             <div className="border-t border-border/50 mt-2 pt-2">

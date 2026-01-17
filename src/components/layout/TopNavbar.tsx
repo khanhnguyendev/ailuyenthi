@@ -5,6 +5,7 @@ import { Target, Trophy, Sparkles } from "lucide-react";
 import { NavMenu } from "./NavMenu";
 import { UserMenu } from "./UserMenu";
 import { MobileNav } from "./MobileNav";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function TopNavbar() {
     return (
@@ -48,6 +49,11 @@ export function TopNavbar() {
                     <Sparkles className="w-3.5 h-3.5 fill-white" />
                     Upgrade
                 </Link>
+
+                {/* Theme Toggle */}
+                <div className="hidden md:block">
+                    <ThemeToggle />
+                </div>
 
                 {/* Divider */}
                 <div className="w-px h-6 bg-border hidden md:block" />

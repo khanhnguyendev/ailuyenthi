@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function MobileNav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -96,6 +97,10 @@ export function MobileNav() {
                                     <Link href="/subscription" onClick={() => setIsOpen(false)} className="flex items-center gap-3 p-4 rounded-xl hover:bg-secondary/50 font-bold text-foreground">
                                         <span>Upgrade Plan</span>
                                     </Link>
+                                    <div className="flex items-center justify-between p-4 rounded-xl hover:bg-secondary/50 font-bold text-foreground border-t border-border/50">
+                                        <span>Theme</span>
+                                        <ThemeToggle />
+                                    </div>
                                 </div>
                             </div>
                         </div>
