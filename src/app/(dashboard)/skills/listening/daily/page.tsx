@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Play, Clock, Trophy, Users, Star, ArrowRight, BarChart3 } from "lucide-react";
+import { Flame, Play, Clock, Trophy, Users, Star, ArrowRight, BarChart3, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
