@@ -1,6 +1,6 @@
 "use client";
 
-import { Headphones, BookOpen, PenTool, Mic, Search, Filter, Play, Star, Zap, Clock } from "lucide-react";
+import { Headphones, BookOpen, PenTool, Mic, Search, Filter, Play, Star, Zap, Clock, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -48,8 +48,8 @@ export default function PracticeHubPage() {
                             key={cat.id}
                             onClick={() => setFilter(cat.id)}
                             className={`px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-all ${filter === cat.id
-                                    ? 'bg-primary text-primary-foreground shadow-lg'
-                                    : 'hover:bg-secondary text-muted-foreground hover:text-foreground'
+                                ? 'bg-primary text-primary-foreground shadow-lg'
+                                : 'hover:bg-secondary text-muted-foreground hover:text-foreground'
                                 }`}
                         >
                             {cat.icon && <cat.icon className="w-4 h-4" />}
