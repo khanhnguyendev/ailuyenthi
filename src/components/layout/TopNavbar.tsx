@@ -18,7 +18,7 @@ export function TopNavbar() {
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform">
                         <Target className="text-white w-5 h-5" />
                     </div>
-                    <span className="font-outfit font-bold text-lg tracking-tight text-foreground hidden md:block">
+                    <span className="font-outfit font-bold text-lg tracking-tight text-foreground whitespace-nowrap hidden md:block">
                         AI Luyện Thi
                     </span>
                 </Link>
