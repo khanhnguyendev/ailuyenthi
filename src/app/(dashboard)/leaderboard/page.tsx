@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function LeaderboardPage() {
     const [timeframe, setTimeframe] = useState<'daily' | 'weekly' | 'monthly'>('weekly');
 
+    const [showPrizes, setShowPrizes] = useState(false);
+
     // Mock Data
     const rankingData = {
         daily: [
@@ -36,6 +38,12 @@ export default function LeaderboardPage() {
         if (timeframe === 'daily') return 'text-orange-500 border-orange-500 bg-orange-500';
         if (timeframe === 'weekly') return 'text-purple-500 border-purple-500 bg-purple-500';
         return 'text-yellow-500 border-yellow-500 bg-yellow-500'; // Monthly
+    };
+
+    const prizes = {
+        daily: { title: "Daily Sprint", reward: "+50 Bonus Points", icon: Timer },
+        weekly: { title: "Weekly League", reward: "+500 Points & Diamond Frame", icon: Trophy },
+        monthly: { title: "Monthly Grand Prix", reward: "1 Month Premium Subscription", icon: Crown },
     };
 
     return (
@@ -230,10 +238,55 @@ export default function LeaderboardPage() {
                         <span className="font-bold text-foreground mx-1">Promotion Zone</span>
                     </div>
                 </div>
-                <button className="flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+                <button
+                    onClick={() => setShowPrizes(true)}
+                    className="flex items-center gap-2 text-sm font-bold text-primary hover:underline"
+                >
                     View Prizes <ChevronRight className="w-4 h-4" />
                 </button>
             </div>
+
+            {/* Prizes Modal */}
+            <AnimatePresence>
+                {showPrizes && (
+                    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+                            onClick={() => setShowPrizes(false)}
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                            className="relative bg-card border border-border p-8 rounded-[2rem] shadow-2xl max-w-md w-full"
+                        >
+                            <h2 className="text-2xl font-bold mb-6 text-center">Season Rewards</h2>
+                            <div className="space-y-4">
+                                {(['daily', 'weekly', 'monthly'] as const).map(key => (
+                                    <div key={key} className={`p-4 rounded-xl border flex items-center gap-4 ${key === timeframe ? 'bg-primary/10 border-primary' : 'bg-secondary/20 border-border'}`}>
+                                        <div className={`p-3 rounded-full ${key === 'daily' ? 'bg-orange-500/20 text-orange-500' : key === 'weekly' ? 'bg-purple-500/20 text-purple-500' : 'bg-yellow-500/20 text-yellow-500'}`}>
+                                            {key === 'daily' ? <Timer className="w-6 h-6" /> : key === 'weekly' ? <Trophy className="w-6 h-6" /> : <Crown className="w-6 h-6" />}
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold capitalize">{prizes[key].title}</h3>
+                                            <p className="text-sm text-muted-foreground">{prizes[key].reward}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <button
+                                onClick={() => setShowPrizes(false)}
+                                className="w-full mt-8 bg-primary text-primary-foreground py-3 rounded-xl font-bold hover:opacity-90 transition-opacity"
+                            >
+                                Close
+                            </button>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
 
         </div>
     );

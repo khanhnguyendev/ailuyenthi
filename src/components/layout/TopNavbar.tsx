@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Target, Trophy, Sparkles } from "lucide-react";
+import { Target, Trophy, Sparkles, Crown } from "lucide-react";
 import { NavMenu } from "./NavMenu";
 import { UserMenu } from "./UserMenu";
 import { MobileNav } from "./MobileNav";
@@ -39,6 +39,16 @@ export function TopNavbar() {
                 >
                     <Trophy className="w-4 h-4 text-amber-500" />
                     <span>1,250</span>
+                </Link>
+
+                {/* Leaderboard Link */}
+                <Link
+                    href="/leaderboard"
+                    className="hidden md:flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground hover:bg-secondary/50 px-3 py-1.5 rounded-full transition-colors"
+                    title="Leaderboard"
+                >
+                    <Crown className="w-4 h-4 text-yellow-500" />
+                    <span>Rank</span>
                 </Link>
 
                 {/* Upgrade Button */}
