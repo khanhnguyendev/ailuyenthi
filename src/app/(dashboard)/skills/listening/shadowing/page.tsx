@@ -1,6 +1,6 @@
 "use client";
 
-import { Mic, Play, Pause, RotateCcw, Volume2, Waveform, ChevronRight } from "lucide-react";
+import { Mic, Play, Pause, RotateCcw, Volume2, Activity, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
